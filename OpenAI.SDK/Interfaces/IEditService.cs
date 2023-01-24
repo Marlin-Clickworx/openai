@@ -23,8 +23,6 @@ public interface IEditService
     /// <param name="editCreate"></param>
     /// <param name="engineId">The ID of the engine to use for this request</param>
     /// <returns></returns>
-    Task<EditCreateResponse> Edit(EditCreateRequest editCreate, Models.Model engineId)
-    {
-        return CreateEdit(editCreate, engineId.EnumToString());
-    }
+    Task<EditCreateResponse> Edit(EditCreateRequest editCreate, Models.Model engineId);
+  
 }

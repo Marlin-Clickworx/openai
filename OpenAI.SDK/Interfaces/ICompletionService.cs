@@ -32,8 +32,8 @@ public interface ICompletionService
     /// <param name="createCompletionModel"></param>
     /// <param name="modelId">The ID of the engine to use for this request</param>
     /// <returns></returns>
-    Task<CompletionCreateResponse> Create(CompletionCreateRequest createCompletionModel, Models.Model modelId)
-    {
-        return CreateCompletion(createCompletionModel, modelId.EnumToString());
-    }
+    Task<CompletionCreateResponse> Create(CompletionCreateRequest createCompletionModel, Models.Model modelId);
+    //{
+    //    return CreateCompletion(createCompletionModel, modelId.EnumToString());
+    //}
 }

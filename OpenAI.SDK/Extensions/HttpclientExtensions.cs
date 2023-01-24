@@ -5,6 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace OpenAI.GPT3.Extensions
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public static class HttpClientExtensions
     {
         public static async Task<T> GetFromJsonAsync<T>(this HttpClient client, string uri)
@@ -35,7 +36,9 @@ namespace OpenAI.GPT3.Extensions
             request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("text/event-stream"));
             request.Content = content;
 
-            return client.Send(request, HttpCompletionOption.ResponseHeadersRead);
+            var task = client.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            Task.WaitAll(task);
+            return task.Result;
         }
 
         public static async Task<TResponse> PostFileAndReadAsAsync<TResponse>(this HttpClient client, string uri, HttpContent content)
@@ -50,4 +53,6 @@ namespace OpenAI.GPT3.Extensions
             return await response.Content.ReadFromJsonAsync<TResponse>() ?? throw new InvalidOperationException();
         }
     }
+    
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

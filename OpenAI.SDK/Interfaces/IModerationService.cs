@@ -27,13 +27,13 @@ namespace OpenAI.GPT3.Interfaces
         ///     the model. Accuracy of text-moderation-stable may be slightly lower than for text-moderation-latest.
         /// </param>
         /// <returns></returns>
-        Task<CreateModerationResponse> CreateModeration(string input, string? model = null)
-        {
-            return CreateModeration(new CreateModerationRequest()
-            {
-                Input = input,
-                Model = model
-            });
-        }
+        Task<CreateModerationResponse> CreateModeration(string input, string? model = null);
+        //{
+        //    return CreateModeration(new CreateModerationRequest()
+        //    {
+        //        Input = input,
+        //        Model = model
+        //    });
+        //}
     }
 }

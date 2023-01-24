@@ -21,10 +21,10 @@ public interface IImageService
     /// </summary>
     /// <param name="prompt"></param>
     /// <returns></returns>
-    Task<ImageCreateResponse> CreateImage(string prompt)
-    {
-        return CreateImage(new ImageCreateRequest(prompt));
-    }
+    Task<ImageCreateResponse> CreateImage(string prompt);
+    //{
+    //    return CreateImage(new ImageCreateRequest(prompt));
+    //}
 
     /// <summary>
     ///     Creates an edited or extended image given an original image and a prompt.

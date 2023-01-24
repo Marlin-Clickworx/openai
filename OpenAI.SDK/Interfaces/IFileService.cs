@@ -32,20 +32,20 @@ public interface IFileService
     /// <returns></returns>
     Task<FileUploadResponse> UploadFile(string purpose, byte[] file, string fileName);
 
-    Task<FileUploadResponse> FileUpload(string purpose, Stream file, string fileName)
-    {
-        return UploadFile(purpose, file.ToByteArray(), fileName);
-    }
+    Task<FileUploadResponse> FileUpload(string purpose, Stream file, string fileName);
+    //{
+    //    return UploadFile(purpose, file.ToByteArray(), fileName);
+    //}
 
-    Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, Stream file, string fileName)
-    {
-        return UploadFile(purpose.EnumToString(), file.ToByteArray(), fileName);
-    }
+    Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, Stream file, string fileName);
+    //{
+    //    return UploadFile(purpose.EnumToString(), file.ToByteArray(), fileName);
+    //}
 
-    Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, byte[] file, string fileName)
-    {
-        return UploadFile(purpose.EnumToString(), file, fileName);
-    }
+    Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, byte[] file, string fileName);
+    //{
+    //    return UploadFile(purpose.EnumToString(), file, fileName);
+    //}
 
     /// <summary>
     ///     Delete a file.

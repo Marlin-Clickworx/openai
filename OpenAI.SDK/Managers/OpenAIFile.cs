@@ -1,5 +1,6 @@
 ﻿using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
+using OpenAI.GPT3.ObjectModels;
 using OpenAI.GPT3.ObjectModels.ResponseModels.FileResponseModels;
 using OpenAI.GPT3.ObjectModels.SharedModels;
 
@@ -38,5 +39,20 @@ public partial class OpenAIService : IFileService
     {
         throw new NotImplementedException();
         //await _httpClient.GetFromJsonAsync<RetrieveFileResponse>($"/{ApiVersion}/files/{fileId}/content");
+    }
+
+    public Task<FileUploadResponse> FileUpload(string purpose, Stream file, string fileName)
+    {
+        return UploadFile(purpose, file.ToByteArray(), fileName);
+    }
+
+    public Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, Stream file, string fileName)
+    {
+        return UploadFile(purpose.EnumToString(), file.ToByteArray(), fileName);
+    }
+
+    public Task<FileUploadResponse> FileUpload(UploadFilePurposes.UploadFilePurpose purpose, byte[] file, string fileName)
+    {
+        return UploadFile(purpose.EnumToString(), file, fileName);
     }
 }

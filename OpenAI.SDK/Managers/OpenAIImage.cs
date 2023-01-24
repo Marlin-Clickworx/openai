@@ -17,6 +17,11 @@ public partial class OpenAIService : IImageService
         return await _httpClient.PostAndReadAsAsync<ImageCreateResponse>(_endpointProvider.ImageCreate(), imageCreateModel);
     }
 
+    public Task<ImageCreateResponse> CreateImage(string prompt)
+    {
+        return CreateImage(new ImageCreateRequest(prompt));
+    }
+
     /// <summary>
     ///     Creates an edited or extended image given an original image and a prompt.
     /// </summary>

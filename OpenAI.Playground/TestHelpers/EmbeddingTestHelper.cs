@@ -15,13 +15,14 @@ namespace OpenAI.Playground.TestHelpers
                 ConsoleExtensions.WriteLine("Embedding Test:", ConsoleColor.DarkCyan);
                 var embeddingResult = await sdk.Embeddings.CreateEmbedding(new EmbeddingCreateRequest()
                 {
-                    InputAsList = new List<string> {"The quick brown fox jumped over the lazy dog."},
+                    InputAsList = new List<string> { "The quick brown fox jumped over the lazy dog." },
                     Model = Models.TextSearchAdaDocV1
                 });
 
                 if (embeddingResult.Successful)
                 {
-                    Console.WriteLine(embeddingResult.Data.FirstOrDefault());
+                    var json = System.Text.Json.JsonSerializer.Serialize(embeddingResult.Data.FirstOrDefault());
+                    Console.WriteLine(json);
                 }
                 else
                 {
@@ -33,7 +34,7 @@ namespace OpenAI.Playground.TestHelpers
                     Console.WriteLine($"{embeddingResult.Error.Code}: {embeddingResult.Error.Message}");
                 }
 
-                Console.WriteLine(embeddingResult.Data.FirstOrDefault());
+                Console.WriteLine(System.Text.Json.JsonSerializer.Serialize(embeddingResult.Data.FirstOrDefault()));
             }
             catch (Exception e)
             {

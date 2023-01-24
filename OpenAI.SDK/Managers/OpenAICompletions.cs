@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using OpenAI.GPT3.Extensions;
 using OpenAI.GPT3.Interfaces;
+using OpenAI.GPT3.ObjectModels;
 using OpenAI.GPT3.ObjectModels.RequestModels;
 using OpenAI.GPT3.ObjectModels.ResponseModels;
 
@@ -9,13 +10,18 @@ namespace OpenAI.GPT3.Managers;
 
 public partial class OpenAIService : ICompletionService
 {
+    public Task<CompletionCreateResponse> Create(CompletionCreateRequest createCompletionModel, Models.Model modelId)
+    {
+        return CreateCompletion(createCompletionModel, modelId.EnumToString());
+    }
+
     /// <inheritdoc />
     public async Task<CompletionCreateResponse> CreateCompletion(CompletionCreateRequest createCompletionRequest, string? modelId = null)
     {
         createCompletionRequest.ProcessModelId(modelId, _defaultModelId);
         return await _httpClient.PostAndReadAsAsync<CompletionCreateResponse>(_endpointProvider.CompletionCreate(), createCompletionRequest);
     }
-    
+
     /// <inheritdoc />
     public async IAsyncEnumerable<CompletionCreateResponse> CreateCompletionAsStream(CompletionCreateRequest createCompletionRequest, string? modelId = null)
     {
@@ -26,7 +32,7 @@ public partial class OpenAIService : ICompletionService
         createCompletionRequest.ProcessModelId(modelId, _defaultModelId);
 
         using var response = _httpClient.PostAsStreamAsync(_endpointProvider.CompletionCreate(), createCompletionRequest);
-        await using var stream = await response.Content.ReadAsStreamAsync();
+        using var stream = await response.Content.ReadAsStreamAsync();
         using var reader = new StreamReader(stream);
         // Continuously read the stream until the end of it
         while (!reader.EndOfStream)

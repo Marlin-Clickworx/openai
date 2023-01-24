@@ -17,7 +17,7 @@ namespace OpenAI.Playground.TestHelpers
                 {
                     Prompt = "Once upon a time",
                     //    PromptAsList = new []{"Once upon a time"},
-                    MaxTokens = 5,
+                    MaxTokens = 500,
                     LogProbs = 1
                 }, Models.Davinci);
 
@@ -55,7 +55,7 @@ namespace OpenAI.Playground.TestHelpers
                 {
                     Prompt = "Once upon a time",
                     //    PromptAsList = new []{"Once upon a time"},
-                    MaxTokens = 5,
+                    MaxTokens = 500,
                     LogProbs = 1,
                     Model = Models.TextDavinciV3
                 });
@@ -95,7 +95,7 @@ namespace OpenAI.Playground.TestHelpers
                 {
                     Prompt = "Once upon a time",
                     //    PromptAsList = new []{"Once upon a time"},
-                    MaxTokens = 5,
+                    MaxTokens = 500,
                     LogProbs = 1,
                     Model = Models.Ada
                 }, Models.TextDavinciV3);
@@ -133,7 +133,7 @@ namespace OpenAI.Playground.TestHelpers
                 var completionResult = sdk.Completions.CreateCompletionAsStream(new CompletionCreateRequest()
                 {
                     Prompt = "Once upon a time",
-                    MaxTokens = 50
+                    MaxTokens = 500
                 }, Models.Davinci);
 
                 await foreach (var completion in completionResult)

@@ -12,5 +12,14 @@ namespace OpenAI.GPT3.Managers
         {
             return await _httpClient.PostAndReadAsAsync<CreateModerationResponse>(_endpointProvider.ModerationCreate(), createModerationRequest);
         }
+
+        public Task<CreateModerationResponse> CreateModeration(string input, string? model = null)
+        {
+            return CreateModeration(new CreateModerationRequest()
+            {
+                Input = input,
+                Model = model
+            });
+        }
     }
 }
